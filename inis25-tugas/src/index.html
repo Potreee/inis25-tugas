@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Quicksand&display=swap" rel="stylesheet">
+  <script src='https://cdn.tailwindcss.com/3.2.0'></script>
+  <script src="./tailwind.config.js"></script>
+  <script src="./script.js"></script>
+  <link rel="icon" type="image/png" href="./img/logo-inis25.png" />
+  <title>Tugas</title>
+  <style>
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+
+    @keyframes shimmerText {
+      0% {
+        background-position: -150% center;
+      }
+
+      100% {
+        background-position: 150% center;
+      }
+    }
+
+    .shimmer-text {
+      background: linear-gradient(120deg,
+          #8b5a2b 0%,
+          #8b5a2b 40%,
+          #fff 48%,
+          #8b5a2b 56%,
+          #8b5a2b 100%);
+      background-size: 300% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerText 4s linear infinite;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col" style="background: linear-gradient(to bottom, #D2A679, #FFF0C9);">
+  <main class="flex-grow flex flex-col items-center pt-[100px]">
+    <!-- Navbar Desktop -->
+    <nav
+      class="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] max-w-[1756px] h-[80px] bg-[#8B5A2B] rounded-[30px] flex items-center justify-between px-8 hidden lg:flex z-[9999] shadow-lg">
+      <div class="flex items-center gap-3">
+        <img src="./img/logo-inis25.png" alt="Logo Inisiasi" class="w-10 h-10 object-contain" />
+        <div class="text-white text-xl font-pirata tracking-widest">INISIASI
+          FTI UAJY</div>
+      </div>
+      <div class="flex gap-10 font-quicksand">
+        <a href="/"
+          class="text-white text-lg font-bold px-4 py-2 rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Beranda</a>
+        <a href="/peserta"
+          class="text-white text-lg font-bold px-4 py-2 rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Peserta</a>
+        <a href="/media"
+          class="text-white text-lg font-bold px-4 py-2 rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Media</a>
+        <a href="/tugas"
+          class="text-white text-lg font-bold px-4 py-2 rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Tugas</a>
+      </div>
+    </nav>
+    <!-- End Navbar Desktop -->
+
+    <!-- Navbar Mobile -->
+    <div
+      class="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] max-w-[600px] h-[70px] bg-[#8B5A2B] rounded-[20px] flex items-center justify-between px-4 lg:hidden z-[9999] shadow-lg">
+      <div class="flex items-center gap-2">
+        <img src="./img/logo-inis25.png" alt="Logo Inisiasi" class="w-8 h-8 object-contain" />
+        <div class="text-white text-xl font-pirata tracking-widest">INISIASI
+          FTI UAJY</div>
+      </div>
+      <button onclick="toggleMenu()" id="menuButton" class="text-white text-xl font-bold toggle-icon mr-2">
+        ☰
+      </button>
+    </div>
+    <!-- Menu Mobile -->
+    <div id="mobileMenu"
+      class="hidden bg-[#8B5A2B] rounded-[20px] w-[90%] max-w-[600px] fixed left-1/2 transform -translate-x-1/2 mt-3 top-[70px] z-[9998] shadow-lg font-quicksand">
+      <a href="/"
+        class="block text-white text-lg font-bold px-4 py-3 text-center rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Beranda</a>
+      <a href="/peserta"
+        class="block text-white text-lg font-bold px-4 py-3 text-center rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Peserta</a>
+      <a href="/media"
+        class="block text-white text-lg font-bold px-4 py-3 text-center rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Media</a>
+      <a href="/tugas"
+        class="block text-white text-lg font-bold px-4 py-3 text-center rounded-xl hover:bg-white hover:text-[#8B5A2B] transition duration-300">Tugas</a>
+    </div>
+  </main>
+  <!-- End Navbar Mobile -->
+
+  <!-- Main Content -->
+  <section
+    class="w-full text-[#000086] relative flex flex-col justify-center items-center px-4 pt-16 pb-10 sm:pb-12 lg:pb-16 space-y-6">
+
+    <!-- Judul Utama -->
+    <div class="relative z-20 flex flex-col items-center justify-center">
+      <h1 class="shimmer-text text-[28px] sm:text-[38px] md:text-[40px] lg:text-[60px] xl:text-[72px] 
+        font-pirata uppercase text-center">
+        Tugas
+      </h1>
+    </div>
+
+    <!-- Card Tugas Pra inisiasi-->
+    <!-- Card 1 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">TWIBBON RESMI INISIASI FTI 2025 </h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Tugas twibbon merupakan salah satu kewajiban bagi mahasiswa baru yang harus dilakukan sebelum Inisiasi FTI 2025 dimulai. Twibbon ini berfungsi sebagai media publikasi dan promosi kegiatan, sekaligus menjadi sarana untuk menunjukkan identitas serta dukungan terhadap pelaksanaan Inisiasi. Melalui postingan twibbon di media sosial pribadi, diharapkan mahasiswa baru dapat berpartisipasi aktif dalam memperkenalkan kegiatan Inisiasi kepada masyarakat luas.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">KETENTUAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pengerjaan tugas dilakukan secara individu.</li>
+            <li>Mahasiswa yang mengikuti inisiasi dan panitia inisiasi FTI UAJY 2025 wajib mengunggah twibbon di akun Instagram pribadi.</li>
+            <li>Akun instagram mahasiswa yang mengikuti inisiasi dan panitia inisiasi FTI UAJY 2025 <b>tidak boleh</b> diprivate.</li>
+            <li>Foto yang digunakan di dalam twibbon adalah foto mahasiswa baru itu sendiri tanpa adanya orang lain dalam foto tersebut.</li>
+            <li>Foto wajah untuk twibbon <b>harus</b> terlihat jelas dan tidak menggunakan atribut apapun yang menutupi wajah (masker, kacamata, atau aksesoris lain), kecuali kacamata optik.</li>
+            <li>Pakaian yang digunakan untuk twibbon adalah bebas, sopan dan rapi.</li>
+            <li>Caption dan hastag yang digunakan <b>harus</b> sesuai dengan ketentuan yang berlaku.</li>
+            <li>Jika terdapat kesalahan dalam unggahan twibbon, maka mahasiswa yang bersangkutan akan mendapatkan pengurangan poin.</li>
+          </ul>
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">ALUR PENGERJAAN</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Mahasiswa baru mengunggah foto yang akan digunakan dalam twibbon.</li>
+            <li>Caption harus sesuai dengan ketentuan yang sudah dibuat oleh Panitia Inisiasi FTI UAJY 2025.</li>
+            <li>Dalam hastag terdapat ketentuan penulisan sesuai dengan kelompok inisiasi mahasiswa baru.</li>
+            <li>Upload twibbon harus disertai dengan men-tag dan mengikuti akun Instagram Inisiasi FTI UAJY, dan 4 lembaga yang ada di FTI UAJY:</li>
+            (1). @inisiasi_ftiuajy<br>
+            (2). @ftiuajy<br>
+            (3). @semaftiuajy<br>
+            (4). @hmtiuajy<br>
+            (5). @himaforka.uajy<br>
+            (6). @himsi.uajy<br>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE 29 AGUSTUS 23.59
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">NAME TAG</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Mahasiswa inisiasi membuat name tag yang memuat informasi identitas mahasiswa baru secara jelas, rapi, dan menarik dengan pas foto, npm, nama, prodi, nama kelompok, dan foto kelompok. Name tag ini dibuat sebagai media identifikasi mahasiswa inisiasi yang memiliki nilai fungsional dan estetika. Bentuk trapesium dipilih untuk memberikan kesan berbeda dari name tag pada umumnya, sehingga desain yang dihasilkan diharapkan kreatif namun tetap sesuai fungsi. Dalam waktu hari pertama sampai hari terakhir acara inisiasi berlangsung mahasiswa inisiasi wajib menggunakan name tag masing-masing.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">DETAIL NAME TAG</h3>
+          <p class="font-semibold">KETENTUAN KERTAS</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Jenis: Buffalo</li>
+            <li>Bentuk: Trapesium (orientasi vertikal) dengan panjang atas 16 cm, panjang bawah 25 cm, tinggi sisi kanan dan kiri 18 cm.</li>
+            <li>Warna ditentukan dengan spin wheel yang didapat per kelompok, dengan pilihan warna sebagai berikut:</li>
+            <!-- Tabel Warna -->
+            <div class="overflow-x-auto mt-2 mb-3">
+              <table class="table-auto border border-[#7d4028] w-[400px] text-left text-[13px] sm:text-[15px]">
+                <thead class="bg-[#7d4028] text-white">
+                  <tr>
+                    <th class="px-3 py-2 border border-[#7d4028]">Warna</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-[#fff8f1]">
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Merah</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Biru Tua</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Kuning</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Hijau Tua</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Oranye</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Ungu Muda</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Pink</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Hijau Muda</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Putih</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Abu-Abu</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Biru Muda</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Cokelat</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Maroon</td></tr>
+                  <tr><td class="px-3 py-1 border border-[#7d4028]">Ungu Tua</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <li>Tali name tag menggunakan tali kur berwarna hitam.</li>
+            <li>Wajib dilaminating.</li>
+            <li>Untuk letak bolongan tali di kiri atas dan kanan atas tidak boleh terkena kertas name tag dan diberi juga jarak 1,5 cm laminating diatas name tag agar tali bisa dimasukkan.</li>
+            <li>Wajib menggunakan spidol.</li>
+            <li>Sisi Depan (urut dari atas ke bawah dan diberi jarak 1 cm):</li>
+            (1). Pas foto berukuran 4 × 6 cm (proporsional).<br>
+            (2). NPM<br>
+            (3). Nama panggilan (huruf jelas dan terbaca).<br>
+            (4). Program Studi<br>
+            (5). Nama Kelompok
+            <li>Sisi Belakang:</li>
+            (1). Foto kelompok inisiasi disamakan dengan bentuk trapesium (fit)<br>
+            Notes : Foto kelompok bisa disesuaikan terlebih dahulu lalu dipotong menyesuaikan bentuk
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DIGUNAKAN SELAMA INISIASI BERLANGSUNG 3-4 SEPTEMBER 2025
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">MEMBUAT AKUN TIKTOK KELOMPOK</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Peserta INISIASI FTI 2025 wajib membuat akun tiktok secara <b>berkelompok,</b> dengan nama akun sesuai dengan nama kelompok dan ada kata “FTI UAJY”.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">KETENTUAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Username kelompok <b>wajib</b> sesuai dengan nama kelompok dengan format namaelompok_ftiuajy.</li>
+            <li>Akun tiktok tidak boleh <i>diprivate.</i></li>
+            <li>Akun kelompok Wajib mengikuti Akun tiktok @inisiasi.ftiuajy</li>
+            (1). @fti.events
+            (2). @himaforka.uajy
+            (3). @hmti_uajy
+            (4). @himsi.uajy
+            <li>Foto profil dapat dibuat sekreatif dan semenarik mungkin tanpa mengandung unsur SARA, politik, dan pornografi. Foto profil menggunakan warna yang sesuai dengan warna <i>name tag.</i></li>
+            <li>Dilarang menyalahgunakan akun tiktok.</li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE 29 AGUSTUS 2025 23.59
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">FRAME KELOMPOK DAN VIDEO PERKENALAN</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Mahasiswa peserta inisiasi membuat video tiktok dengan menggunakan frame video sesuai dengan kelompoknya masing-masing. Setiap anggota wajib mengunggah tugas video tersebut ke akun. Berikut merupakan deskripsinya masing-masing.<br>
+          <b>a. Frame video tiktok</b><br>
+          Frame video ini akan digunakan pada semua video tiktok yang diunggah. Seluruh anggota dalam satu kelompok wajib menggunakan frame yang sama.<br>
+          <b>b. Video tiktok</b><br>
+          Masing-masing peserta inisiasi wajib membuat video tiktok. Video tiktok ini berisikan jargon inisiasi, yel-yel kelompok masing-masing, perkenalan diri, dan terakhir menyebutkan <i>role model</i> dari masing-masing mahasiswa beserta alasan memilih <i>role model-nya.</i>
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">KETENTUAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pengerjaan tugas dilakukan secara individu.</li>
+            <li>Mahasiswa yang mengikuti inisiasi dan panitia inisiasi FTI UAJY 2025 wajib mengunggah twibbon di akun Instagram pribadi.</li>
+            <li>Akun instagram mahasiswa yang mengikuti inisiasi dan panitia inisiasi FTI UAJY 2025 <b>tidak boleh</b> diprivate.</li>
+            <li>Foto yang digunakan di dalam twibbon adalah foto mahasiswa baru itu sendiri tanpa adanya orang lain dalam foto tersebut.</li>
+            <li>Foto wajah untuk twibbon <b>harus</b> terlihat jelas dan tidak menggunakan atribut apapun yang menutupi wajah (masker, kacamata, atau aksesoris lain), kecuali kacamata optik.</li>
+            <li>Pakaian yang digunakan untuk twibbon adalah bebas, sopan dan rapi.</li>
+            <li>Caption dan hastag yang digunakan <b>harus</b> sesuai dengan ketentuan yang berlaku.</li>
+            <li>Jika terdapat kesalahan dalam unggahan twibbon, maka mahasiswa yang bersangkutan akan mendapatkan pengurangan poin.</li>
+            <li>Durasi video maksimal adalah <b>1 menit 30 detik</b>.</li>
+            <li>Editan pada video <b>tidak boleh</b> mengandung unsur SARA ataupun hal-hal yang tidak diinginkan.</li>
+          </ul>
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">ALUR PENGERJAAN</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Mahasiswa baru mengunggah foto yang akan digunakan dalam twibbon.</li>
+            <li>Caption harus sesuai dengan ketentuan yang sudah dibuat oleh Panitia Inisiasi FTI UAJY 2025.</li>
+            <li>Dalam hastag terdapat ketentuan penulisan sesuai dengan kelompok inisiasi mahasiswa baru.</li>
+            <li>Upload twibbon harus disertai dengan men-tag dan mengikuti akun Instagram Inisiasi FTI UAJY, dan 4 lembaga yang ada di FTI UAJY:
+            @inisiasi_ftiuajy<br>
+            @semaftiuajy<br>
+            @hmtiuajy<br>
+            @himaforka.uajy<br>
+            @himsi.uajy<br>
+            Notes : Disarankan mengunggah video dan poster digital serta twibbon lebih cepat agar tidak terkena limit aplikasi.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE 30 AGUSTUS 2025 23.59
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">TWIBBON KELOMPOK & INFOGRAFIS DIGITAL</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Peserta INISIASI FTI 2025 wajib membuat twibbon dan infografis digital berisi harapan untuk perkuliahan dari semester 1 sampai setelah lulus kuliah, beserta langkah konkret yang dapat dilakukan untuk menggapai harapan tersebut.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">KETENTUAN TUGAS</h3>
+          <p class="font-semibold">Infografis Digital:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pengerjaan tugas bersifat <b>individu</b> tanpa bekerja sama dengan anggota kelompok.</li>
+            <li>Infografis yang dibuat harus merupakan karya orisinil dari peserta Inisiasi 2025 dan <b>tidak mengandung unsur plagiarisme.</b></li>
+            <li>Karya <b>dilarang</b> mengandung unsur SARA, pornografi, dan bahasa yang tidak pantas serta bertentangan dengan norma sosial yang berlaku.</li>
+            <li>Ukuran infografis adalah <b>A4 (210 x 297 mm),</b> dengan orientasi <b>vertikal <i>(potrait)</i></b> dan sisi samping infografis adalah <b><i>background</i> putih.</b></li>
+            <li>Infografis <b>wajib</b> memuat identitas diri peserta di sebelah kiri atas, termasuk <b>nama lengkap, nama kelompok, program studi, dan NPM.</b></li>
+            <li>Infografis wajib mencantumkan <b>logo UAJY</b> dan logo INISIASI 2025 di atas bagian tengah. Untuk logo UAJY diletakkan di sisi <b>kiri tengah atas</b> dan <b>logo Inisiasi</b> diletakkan di <b>sisi kanan tengah atas.</b></li>
+            <li><b>Judul</b> infografis diletakkan <b>di tengah atas,</b> dibuat semenarik mungkin dan sesuai dengan isi infografis.</li>
+            <li>Isi infografis adalah gambaran <b>harapan</b> peserta selama perkuliahan dari <b>semester 1 hingga setelah lulus kuliah,</b> serta <b>langkah-langkah nyata (konkret)</b> yang dilakukan untuk menggapai harapan tersebut.</li>
+            <li>Pengumpulan infografis melalui akun tiktok kelompok oleh masing-masing peserta. Akun tiktok kelompok <b>tidak boleh <i>diprivate.</i></b></li>
+          </ul>
+          <p class="font-semibold">Twibbon Kelompok:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pengerjaan tugas dilakukan secara <b>kelompok.</b></li>
+            <li>Twibbon dibuat dengan ketentuan terdapat nama lengkap, nama kelompok, prodi. <b>Warna twibbon</b> sesuai dengan warna nametag.</li>
+            <li>Twibbon diupload di akun tiktok kelompok. Akun tiktok kelompok <b>tidak boleh <i>diprivate.</i></b></li>
+            <li><b>Akun kelompok Wajib mengikuti Akun tiktok</b>
+            (1). @inisiasi.ftiuajy<br> 
+            (2). @fti.events<br> 
+            (3). @himaforka.uajy<br> 
+            (4). @hmti_uajy @himsi.uajy</li>
+            <li>Postingan <b>twibbon</b> diletakkan di slide pertama, kemudian <b>infografis digital</b> diletakkan di slide kedua.</li>
+            <li>Twibbon kelompok wajib mencantumkan logo UAJY dan logo INISIASI 2025 di atas bagian tengah. Untuk <b>logo UAJY</b> diletakkan di <b>sisi kiri tengah atas</b> dan <b>logo Inisiasi</b> diletakkan di <b>sisi kanan tengah atas.</b></li>
+            <li>Peserta INISIASI 2025 diperbolehkan mengunggah twibbon & infografis digital dengan <b>musik,</b> <b>namun dilarang menggunakan lagu atau audio yang mengandung bahasa tidak pantas atau kata-kata kasar.</b></li>
+            <li>Foto yang digunakan di dalam twibbon adalah <b>foto peserta INISIASI FTI 2025 itu sendiri</b> tanpa ada orang lain di dalam foto tersebut.</li>
+            <li>Foto wajah untuk twibbon harus terlihat jelas dan tidak menggunakan atribut apapun yang menutupi wajah (masker, kacamata, dll), kecuali kacamata optik.</li>
+            <li>Pakaian yang digunakan untuk twibbon adalah bebas sopan.</li>
+            <li>Caption dan hastag yang digunakan harus sesuai dengan ketentuan yang berlaku. Caption dibuat sekreatif mungkin dengan hastag sebagai berikut.</li>
+            #INISIASIFTIUAJY2025<br>
+            #FTIUAJY<br>
+            #AbhicandraPanditaMurakabi<br>
+            #Kelompok(NamaKelompok)InisiasiFTI2025<br>
+            @inisiasi.ftiuajy @fti.events @himaforka.uajy @hmti_uajy @himsi.uajy
+            <li>Jika terdapat kesalahan dalam unggahan twibbon, maka peserta yang bersangkutan akan mendapatkan pengurangan poin.</li><br>
+            Notes : Disarankan mengunggah video dan poster digital serta twibbon lebih cepat agar tidak terkena limit aplikasi.
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE 1 SEPTEMBER 2025 23.59
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">MIND MAP</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Tugas mind map merupakan tugas yang wajib dilakukan oleh setiap individu peserta inisiasi FTI 2025. Tugas ini dibuat dengan tujuan untuk mendorong mahasiswa memahami makna filosofi dari warna pada logo inisiasi serta memberikan contoh konkret yang akan mereka lakukan selama menjadi mahasisiswa FTI UAJY sejalan dengan makna filosofi logo inisiasi. Tugas ini dikumpulkan secara fisik kepada pendamping kelompok masing-masing.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">KETENTUAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pengerjaan tugas dilakukan secara individu.</li>
+            <li>Mind map harus memuat masing-masing makna filosofis dari warna logo inisiasi dan contoh hal yang dilakukan berdasarkan makna filosofis warna pada logo.</li>
+            <li>Mind map dikerjakan di kertas HVS dengan ukuran A4 dengan posisi landscape dan diberikan garis tepi 1cm.</li>
+            <li>Mind map dikerjakan secara manual. Dalam arti mind map tidak boleh dikerjakan dengan teknologi digital.</li>
+            <li>Pastikan untuk memberikan identitas berupa Nama Lengkap, NPM, Kelompok di bagian kanan atas kertas.</li>
+            <li>Hasil pengerjaan mind map tidak boleh menggunakan pensil, diwajibkan untuk menggunakan alat tulis berwarna.</li>
+            <li>Tulisan harus terbaca dengan jelas.</li>
+            <li>Pengerjaan mind map dibuat sekreatif mungkin.</li>
+            <li>Mind map tidak boleh mengandung unsur SARA, pornografi, dan kata-kata kasar yang bertentangan dengan norma yang berlaku dalam masyarakat.</li>
+            <li>Hasil pengerjaan mind map tidak boleh terlipat, kusut, dan kotor saat dikumpulkan. Segala bentuk noda dan tipex termasuk dalam kategori kotor.</li>
+            <li><b>Plagiasi sangat tidak diperbolehkan.</b> Peserta dengan hasil pengerjaan yang terindikasi plagiasi akan diberi konsekuensi berupa poin pelanggaran.</li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE 3 SEPTEMBER 2025 (Sebelum Pembukaan Inisiasi dimulai)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">ESSAI OBSERVASI DAN WAWANCARA</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+        Setiap peserta Inisiasi FTI 2025 diwajibkan menulis sebuah esai tangan secara individu yang berisi rangkuman hasil wawancara dengan peserta Inisiasi FTI 2025 lain. Melalui wawancara ini, peserta akan menggali penerapan nyata nilai-nilai luhur UAJY (Unggul, Inklusif, Humanis, dan Berintegritas), sekaligus mengenal keberagaman budaya yang ada di FTI UAJY.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">PERATURAN DAN KETENTUAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            1.	Tugas <b>wajib</b> dikerjakan secara individu.<br>
+            2.	Kertas & Media Penulisan:<br>
+            <li>Menggunakan <b>kertas folio bergaris.</b></li>
+            <li>Menggunakan pena (pulpen) berwarna hitam.</li>
+            <li>Tulisan tangan harus <b>rapi dan dapat dibaca dengan jelas.</b></li>
+            3.	Format Penulisan:<br>
+            <li>Kertas diberikan garis tepi (garis bantu) sebesar <b>1 cm</b> dari sisi kanan dan kiri. Garis bantu dibuat menggunakan pensil dan wajib dihapus setelah tulisan selesai agar hasil akhir rapi.</li>
+            <li><b>Identitas Peserta</b> ditulis pada pojok kiri atas, di luar garis tepi, dengan format:
+            Kelompok: [Nama Kelompok Anda]<br>
+            Nama Lengkap (Nama Panggilan): [Nama Anda (Panggilan)]<br>
+            NPM: [NPM Anda]<br>
+            Program Studi: [Prodi Anda]<br></li>
+            <li><b>Judul Esai</b> ditulis pada baris pertama halaman, dengan posisi di tengah. Judul dibuat sendiri sesuai kreativitas masing-masing peserta dan harus relevan dengan isi esai.</li>
+            <li>Setiap awal paragraf diberikan <b>indentasi (menjorok ke dalam) sekitar 1 cm</b> dari garis tepi.</li>
+            <li>Tidak boleh ada baris kosong (spasi enter) di antara paragraf. Setelah satu paragraf selesai, langsung mulai paragraf baru di baris berikutnya.</li>
+            4.	Isi & Konten Esai:<br>
+            <li>Esai wajib memuat rangkuman hasil wawancara dengan minimal 3 (tiga) teman satu kelompok mengenai :</li>
+            (1).	Penerapan nilai-nilai luhur UAJY dalam kehidupan nyata <b>minimal 3 nilai luhur</b> setiap narasumber.<br>
+            (2).	Asal daerah dan budaya yang dimiliki oleh masing-masing narasumber, dengan pembahasan <b>minimal 3 topik</b> terkait budaya tersebut (seperti, bahasa, tradisi, makanan khas, pengalaman budaya yang berkesan).<br>
+            (3).	Melampirkan foto bersama narasumber sebagai bukti telah melakukan wawancara.<br>
+            <li>Bahasa yang digunakan bebas, boleh menggunakan bahasa baku maupun bahasa sehari-hari yang sopan.</li>
+            <li>Isi esai <b>tidak boleh mengandung unsur SARA,</b> ujaran kebencian, atau hal-hal negatif lainnya.</li>
+            5.	Ketentuan Lainnya:<br>
+            <li>Minimal tulisan adalah <b>1 (satu) halaman penuh</b> kertas folio.</li>
+            <li>Di setiap paragraf akhir wawancara setiap mahasiswa, wajib <b>melampirkan bukti foto</b> kegiatan wawancara yang sudah dicetak dengan ukuran 5 x 5 cm orientasi <b>portrait</b> dan ditempel.</li>
+            <li><b>Tidak ada</b> baris kosong (spasi enter) di antara paragraf dan lampiran foto.</li>
+            <li>Setiap peserta hanya boleh mewawancarai narasumber <b>secara satu arah.</b> Contoh: Jika Mahasiswa 1 mewawancarai Mahasiswa 2, maka Mahasiswa 2 tidak diperbolehkan mewawancarai Mahasiswa 1. Mahasiswa 2 harus mencari narasumber lain yang berbeda.</li>
+            <li>Dilarang keras melakukan <b>plagiasi</b> atau menjiplak karya peserta lain.</li>
+            <li>Peserta yang tidak mengerjakan atau tidak mengikuti ketentuan di atas akan mendapatkan sanksi sesuai peraturan yang berlaku di Inisiasi FTI 2025.</li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            4 SEPTEMBER 2025 (DAY 2) pukul 07:00 WIB (secara fisik sebelum apel pagi dimulai)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">VIDEO REFLEKSI DAY-1 KELOMPOK</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+          Mahasiswa baru Fakultas Teknologi Industri membuat video refleksi mengenai materi yang didapatkan pada inisiasi Day-1,  lalu menceritakan insight apa yang mereka dapatkan selama tour pada saat inisiasi. Materi dalam video ini berisikan sesuai dengan informasi/materi yang diperoleh dari kegiatan Inisiasi serta insight yang didapatkan Mahasiswa Baru pada hari pertama.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">KETENTUAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pengerjaan tugas dilakukan secara berkelompok.</li>
+            <li>Video harus diunggah pada akun Tiktok kelompok.</li>
+            <li>Akun Tiktok kelompok tidak boleh diatur ke mode privat dan Akun kelompok Wajib mengikuti Akun tiktok @inisiasi.ftiuajy</li>
+            <li>Semua anggota kelompok wajib berpartisipasi dalam pembuatan video.</li>
+            <li>Orientasi video harus dalam format landscape dengan durasi maksimal 5 menit.</li>
+            <li>Pakaian yang digunakan baju berkerah, rapi dan sopan.</li>
+            <li>Seluruh konten video tidak boleh mengandung unsur SARA, pornografi dan kata kata kasar.</li>
+            <li>Video harus diedit sesuai dengan kreativitas masing-masing kelompok.</li>
+            <li>Jobdesc masing-masing anggota kelompok harus dicantumkan pada akhir video (Foto, Nama, dan NPM(credit scene)). Credit scene tidak termasuk dalam durasi video.</li>
+            <li>Postingan video wajib menandai akun Tiktok @inisiasi.ftiuajy @fti.events @himaforka.uajy @hmti_uajy @himsi.uajy</li>
+            <li>Caption harus berisi insight yang didapatkan selama kegiatan Day-1 yang paling menarik menurut kelompok. Menggunakan hashtag:
+            #(namakelompok)inisiasiFTI2025<br>
+            #INISIASIFTIUAJY2025<br>
+            #FTIUAJY<br> 
+            #AbhicandraPanditaMurakabi<br>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE 3 September 2025 Pada Pukul 23.59 WIB
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">TANDA TANGAN PANITIA</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+        Tugas tanda tangan panitia merupakan suatu tugas individu yang dilakukan oleh mahasiswa baru selama kegiatan inisiasi berlangsung dengan tujuan untuk mendapatkan tanda tangan dari setiap anggota panitia inisiasi. Tugas ini juga bertujuan untuk memperkenalkan mahasiswa baru dengan anggota panitia inisiasi, dan agar dapat membangun interaksi sosial antara mahasiswa baru dan anggota panitia inisiasi. Untuk bisa mendapatkan tanda tangan dari para panitia, mahasiswa baru diwajibkan untuk melakukan tantangan atau menjawab pertanyaan yang diberikan oleh panitia, dan apabila gagal dalam melakukan tantangan atau tidak bisa menjawab pertanyaan maka mahasiswa baru diminta untuk mengingat dan mempelajari kembali tantangan dan pertanyaan yang dilakukan.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">PERATURAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Setiap mahasiswa baru <b>wajib</b> menjalankan tugas ini secara individu.</li>
+            <li>Tugas ini <b>harus</b> diselesaikan dalam waktu kurang dari 2 hari inisiasi.</li>
+            <li>Mahasiswa baru <b>harus</b> mengumpulkan dengan lengkap tanda tangan dari setiap panitia inisiasi yang termasuk Pengurus Harian, Steering Commitee, Koordinator Bidang dan setiap Anggota Bidang <b>minimal</b> 2 anggota.</li>
+            <li>Nilai poin per tanda tangan dari masing-masing bidang:</li>
+          <!-- Tabel Poin Panitia -->
+          <div class="overflow-x-auto mt-2 mb-3">
+            <table class="table-auto border border-[#7d4028] w-[900px] max-w-full text-center text-[13px] sm:text-[15px]">
+              <thead class="bg-[#7d4028] text-white">
+                <tr>
+                  <th class="px-3 py-2 border border-[#7d4028]">Pengurus Harian</th>
+                  <th class="px-3 py-2 border border-[#7d4028]">Steering Committee</th>
+                  <th class="px-3 py-2 border border-[#7d4028]">Koordinator Bidang</th>
+                  <th class="px-3 py-2 border border-[#7d4028]">Anggota Bidang</th>
+                </tr>
+              </thead>
+              <tbody class="bg-[#fff8f1]">
+                <tr>
+                  <td class="px-3 py-2 border border-[#7d4028]">8 poin / panitia</td>
+                  <td class="px-3 py-2 border border-[#7d4028]">6 poin / panitia</td>
+                  <td class="px-3 py-2 border border-[#7d4028]">2 poin / panitia</td>
+                  <td class="px-3 py-2 border border-[#7d4028]">1 poin / panitia</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <li>Sebagai informasi, terdapat <b>5 anggota</b> Pengurus Harian, <b>4 anggota</b> Steering Committee, <b>11 Koordinator</b> Bidang (2 Koordinator Bidang di Acara, 2 Koordinator Bidang di Pendamping Kelompok, 2 Koordinator Bidang di Kesehatan dan 1 Koordinator Bidang 5 bidang lainnya), dan <b>anggota</b> bidang panitia inisiasi (Acara, Tugas, Pendamping Kelompok, Perlengkapan dan Konsumsi, Keamanan, Sekretariat, Muldok dan IT, dan Kesehatan). Jadi peserta <b>minimal</b> harus memiliki <b>25 tanda tangan</b> panitia inisiasi.</li>
+            <li>Bagi mahasiswa baru yang dengan inisiatif sendiri maju ke depan sebagai perwakilan, memimpin doa, dsb maka akan mendapatkan tanda tangan secara gratis dari anggota bidang.</li>
+            <li>Waktu untuk mahasiswa meminta tanda tangan yaitu pada pagi hari sebelum kegiatan inisiasi dimulai (sebelum apel pagi), pada saat waktu istirahat dengan syarat tidak mengganggu panitia yang sedang istirahat dan pada waktu selesai istirahat dengan waktu yang diberikan yaitu selama <b>10 menit.</b></li>
+            <li>Mahasiswa <b>dilarang</b> meminta tanda tangan diluar waktu yang ditentukan atau pada saat kegiatan inisiasi berlangsung.</li>
+            <li>Mahasiswa <b>dilarang</b> meminta tanda tangan dari pendamping kelompok (PK) sendiri.</li>
+            <li>Setiap tanda tangan <b>harus asli</b> dan diberikan langsung oleh panitia inisiasi yang bersangkutan.</li>
+            <li>Setiap Panitia yang dimintai tanda tangan dapat memberikan Pertanyaan dan Pertanyaan tersebut harus mengenai Atma Jaya Yogyakarta dan Fakultas Teknologi Industri.</li>
+            <li>Batasan pertanyaan dan tantangan yang diberikan :</li>
+            Tidak melibatkan aktivitas fisik yang memberatkan<br> 
+            Tidak mengandung unsur sara<br>
+            Tidak melibatkan informasi pribadi panitia / peserta
+            <li>Dalam kotak tanda tangan <b>harus</b> berisi tanda tangan, cap, dan nama panitia.</li>
+            <li>Mahasiswa baru wajib menjaga sikap sopan dan mengikuti instruksi dari panitia inisiasi.</li>
+            <li>Mahasiswa baru diwajibkan mengikuti peraturan yang diberikan dan menyelesaikannya dengan baik dan benar.</li>
+          </ul>
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">ALUR PENGERJAAN TUGAS</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Mahasiswa mencari dan menemui panitia dengan tujuan untuk meminta tolong untuk memberikan tanda tangan.</li>
+            <li>Mahasiswa baru memperkenalkan diri kepada anggota panitia inisiasi.</li>
+            <li>Panitia memberikan tantangan dan pertanyaan kepada mahasiswa baru.</li>
+            <li>Mahasiswa harus melakukan tantangan dan menjawab pertanyaan dengan benar untuk mendapatkan tanda tangan panitia beserta cap.</li>
+            <li>Proses diulang pada hari-hari inisiasi berikutnya hingga semua tanda tangan panitia inisiasi terkumpul.</li>
+            <li>Setelah selesai, mahasiswa baru harus menyerahkan buku suci kepada pendamping kelompok sebagai bukti penyelesaian tugas.</li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE dikumpulkan setelah meminta tanda tangan terakhir di DAY-2 pukul 12.00
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="card bg-[#ffffff] rounded-[24px] w-full max-w-[1400px] p-4 sm:p-6 lg:px-10 xl:px-12 flex flex-col space-y-3">
+      <!-- Header -->
+      <div class="flex items-center space-x-2">
+        <img class="w-[48px] sm:w-[64px] md:w-[80px] h-auto object-cover" src="./img/map.png" alt="Ikon Peta" />
+        <h2 class="shimmer-text text-[#7d4028] font-pirata text-[20px] sm:text-[26px] md:text-[34px]">AFTER INISIASI</h2>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-[#ffe5c1] rounded-[12px] w-full px-3 py-3 space-y-2">
+        <h3 class="text-[#7d4028] font-quicksand font-bold text-[16px] sm:text-[20px] md:text-[24px]">DESKRIPSI TUGAS</h3>
+        <p class="text-[#7d4028] font-quicksand font-medium text-[13px] sm:text-[15px] md:text-[17px] leading-[1.5]">
+        Tugas After inisiasi akan berlangsung Ketika kegiatan Inisiasi FTI 2025 Berakhir, Tugas ini dilakukan antar Prodi. After Inisiasi bertujuan untuk membangun kesolidan setiap prodi yang ada di Fakultas Teknologi Industri AtmaJaya Yogyakarta. 
+        Untuk Memenuhi Tugas ini  setiap Mahasiswa baru akan membentuk kepanitiaan untuk setiap prodi dan nanti nya setiap prodi akan membuat suatu rangkaian acara dengan tujuan fun untuk lebih mengenal dan membangun pertemanan antar mahasiswa se-prodi, seluruh mahasiswa baru juga diwajibkan untuk datang pada saat acara dilaksanakan.
+        </p>
+
+        <!-- Ketentuan -->
+        <div class="ketentuan hidden overflow-hidden mt-3 text-[#7d4028] font-quicksand text-[13px] sm:text-[15px] md:text-[17px] space-y-2">
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">PERATURAN PELAKSANAAN TUGAS AFTER INISIASI</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Tugas dilakukan untuk seluruh mahasiswa baru prodi FTI UAJY.</li>
+            <li>Tugas ini harus diselesaikan dalam kurun waktu H+1 bulan setelah hari inisiasi dilaksanakan.</li>
+            <li>Mahasiswa baru wajib mengikuti acara yang diselenggarakan oleh kepanitiaan disetiap prodi nya.</li>
+            <li>Kepanitiaan disusun oleh mahasiswa baru masing-masing prodi.</li>
+            <li>Kepanitiaan masing-masing prodi wajib memberikkan kepastian tanggal acara kepada panitia dalam kurun waktu H-1 minggu setelah inisiasi berakhir.</li>
+            <li>Kepanitiaan masing-masing prodi wajib berunding Bersama untuk menentukkan tanggal acara yang akan dilakukan dengan tujuan acara yang dilaksanakan tidak akan bertabrakan antar prodi.</li>
+            <li>Kepanitiaan masing-masing prodi juga harus berkoordinasi dengan masing-masing himpunan prodi serta Senat Mahasiswa FTI Uajy.</li>
+            <li>Didalam acara yang dilakukan wajib melibatkan sesi sharing dengan prodi himpunan dan Senat Mahasiswa guna untuk membangun insight mahasiswa baru FTI UAJY.</li>
+            <li>Acara yang dilakukan tidak diperbolehlan mengandung unsur <b>SARA, Pornografi</b> serta sangat tidak diperbolehkan membawa <b>Alkohol, rokok/Vape</b> pada saat acara dilaksanakan.</li>
+          </ul>
+          <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px]">TUGAS AFTER INISIASI</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Tugas dilaksanakan oleh mahasiswa baru yang satu kelompok dengan prodi yang sama.</li>
+            <li>Mahasiswa wajib mengambil beberapa foto pada saat acara berlangsung dengan catatan tidak menganggu keberlangsungan acara.</li>
+            <li>Foto yang diambil wajib diunggah pada masing-masing tiktok kelompok dengan maksimal 6 Slide, 2 foto diantara nya wajib foto mahasiswa baru yang satu kelompok dengan prodi yang sama. Pada foto kelompok wajib mencantumkan nama dan npm masing-masing, identitas diberikan di atas wajah mahasiswa.</li><br>
+            (1). Teknik Industri : 6 Slide ( 4 kegiatan berlangsung dan 2 adalah foto kelompok)<br>
+            (2). Informatika : 6 Slide ( 4 kegiatan berlangsung dan 2 adalah foto kelompok)<br>
+            (3). Sistem Informasi : 6 Slide ( 4 kegiatan berlangsung dan 2 adalah foto kelompok)<br>
+            <li>Pada Caption dibuat sekreatif mungkin dengan mencantum kan nama serta NPM mahasiswa yang hadir pada saat After Inisiasi. Postingan juga harus menandai @inisiasi.ftiuajy @fti.events @himaforka.uajy @hmti_uajy @himsi.uajy</li>
+          </ul>
+        </div>
+
+        <!-- Tombol -->
+        <button onclick="toggleKetentuan(this)" 
+          class="mt-3 flex items-center gap-2 border border-[#7d4028] text-[#7d4028] 
+          px-3 py-1.5 text-[12px] sm:px-4 sm:py-2 sm:text-[14px] md:text-[15px] 
+          font-quicksand font-semibold rounded-full hover:bg-[#7d4028] hover:text-white transition">
+          Read More
+        </button>
+      </div>
+
+      <!-- Deadline -->
+      <div class="flex flex-col justify-between gap-3 w-full">
+        <div class="bg-[#8b5a2b] w-full lg:w-[50%] h-[40px] rounded-[12px] flex items-center px-3">
+          <p class="text-white font-quicksand font-bold text-[10px] sm:text-[14px] md:text-[16px] leading-snug">
+            DEADLINE H+1 bulan setelah Inisiasi
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer
+    class="bg-[#8B5A2B] text-white w-full pt-10 pb-4 font-quicksand text-[0.95rem] leading-relaxed mt-0 sm:mt-0 lg:mt-6">
+    <div class="max-w-7xl mx-auto px-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- INISIASI -->
+      <div>
+        <h2 class="text-lg lg:text-2xl font-pirata tracking-wide mb-1 uppercase">
+          INISIASI FTI UAJY 2025
+        </h2>
+        <p class="text-gray-300 text-sm lg:text-lg font-normal">
+          FAKULTAS TEKNOLOGI INDUSTRI<br>
+          UNIVERSITAS ATMA JAYA YOGYAKARTA
+        </p>
+      </div>
+      <!-- SOSIAL MEDIA -->
+      <div>
+        <h2 class="text-lg lg:text-2xl font-pirata tracking-wide mb-1 uppercase">
+          SOSIAL MEDIA
+        </h2>
+        <ul class="text-gray-300 space-y-1 text-[0.95rem] lg:text-lg font-normal">
+          <li class="flex items-center gap-2">
+            <svg class="w-[17px] h-[17px] lg:w-5 lg:h-5" fill="#ffffff" viewBox="0 0 256 256">
+              <g transform="scale(10.66667,10.66667)">
+                <path
+                  d="M8,3c-2.761,0 -5,2.239 -5,5v8c0,2.761 2.239,5 5,5h8c2.761,0 5,-2.239 5,-5v-8c0,-2.761 -2.239,-5 -5,-5zM18,5c0.552,0 1,0.448 1,1c0,0.552 -0.448,1 -1,1c-0.552,0 -1,-0.448 -1,-1c0,-0.552 0.448,-1 1,-1zM12,7c2.761,0 5,2.239 5,5c0,2.761 -2.239,5 -5,5c-2.761,0 -5,-2.239 -5,-5c0,-2.761 2.239,-5 5,-5zM12,9c-1.65685,0 -3,1.34315 -3,3c0,1.65685 1.34315,3 3,3c1.65685,0 3,-1.34315 3,-3c0,-1.65685 -1.34315,-3 -3,-3z" />
+              </g>
+            </svg>
+            <a href="https://www.instagram.com/inisiasi_ftiuajy/" target="_blank" class="hover:text-white">
+              Instagram
+            </a>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-[17px] h-[17px] lg:w-5 lg:h-5" fill="#ffffff" viewBox="0 0 256 256">
+              <g transform="scale(10.66667,10.66667)">
+                <path
+                  d="M21.582,6.186c-0.23,-0.86 -0.908,-1.538 -1.768,-1.768c-1.56,-0.418 -7.814,-0.418 -7.814,-0.418c0,0 -6.254,0 -7.814,0.418c-0.86,0.23 -1.538,0.908 -1.768,1.768c-0.418,1.56 -0.418,5.814 -0.418,5.814c0,0 0,4.254 0.418,5.814c0.23,0.86 0.908,1.538 1.768,1.768c1.56,0.418 7.814,0.418 7.814,0.418c0,0 6.254,0 7.814,-0.418c0.861,-0.23 1.538,-0.908 1.768,-1.768c0.418,-1.56 0.418,-5.814 0.418,-5.814c0,0 0,-4.254 -0.418,-5.814zM10,15.464v-6.928l6,3.464z" />
+              </g>
+            </svg>
+            <a href="https://www.youtube.com/@inisiasiftiuajy" target="_blank" class="hover:text-white">
+              YouTube
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- MAPS -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <div class="w-full h-40 rounded overflow-hidden mb-2">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.098128168296!2d110.41612909999999!3d-7.7794195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59f1fb2f2b45%3A0x20986e2fe9c79cdd!2sUniversitas%20Atma%20Jaya%20Yogyakarta%20-%20Kampus%203%20Gedung%20Bonaventura%20Babarsari!5e0!3m2!1sen!2sid!4v1753247303991!5m2!1sen!2sid"
+            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="text-gray-300 text-[0.75rem] lg:text-[1rem] font-normal">
+          Jl. Babarsari No.43, Janti, Caturtunggal, Kec. Depok,<br>
+          Kabupaten Sleman, DIY 55281
+        </p>
+      </div>
+    </div>
+    <!-- Copyright -->
+    <div
+      class="border-t border-white mt-6 pt-4 text-center text-[10px] sm:text-xs md:text-sm lg:text-base font-bold text-white">
+      ©2025 by Muldok & IT Inisiasi FTI UAJY 2023. All rights reserved.
+    </div>
+  </footer>
+  <!-- End Footer -->
+</body>
+
+</html>
